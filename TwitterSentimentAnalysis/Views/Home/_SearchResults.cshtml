@@ -1,0 +1,12 @@
+﻿@model IEnumerable<TwitterSentimentAnalysis.Models.ClassifiedTweetModel>
+@foreach (var tweet in Model)
+{
+    <ul>
+        <li>
+            @tweet.Text
+        </li>
+        <li>
+            @(tweet.Classifications.Any() ? tweet.Classifications.First().TagName : "Not classified")
+        </li>
+    </ul>
+}

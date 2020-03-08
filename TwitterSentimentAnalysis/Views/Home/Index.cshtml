@@ -1,9 +1,25 @@
-﻿@{
+﻿@model TwitterSentimentAnalysis.Models.SearchModel
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
+        <h3>Twitter sentiment analysis</h3>
+    </div>
+</div>
+<div class="row">
+    @using (Ajax.BeginForm("Search", "Home", new AjaxOptions { UpdateTargetId = "searchResults", HttpMethod = "POST", InsertionMode = InsertionMode.Replace }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="col-md-8">
+            @Html.EditorFor(model => model.SearchText)
+        </div>
+        <div class="col-md-4">
+            <input type="submit" class="btn-primary" value="Search" />
+        </div>
+    }
+    <div id="searchResults" class="col-md-12">
+
     </div>
 </div>
