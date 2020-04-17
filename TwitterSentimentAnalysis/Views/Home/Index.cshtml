@@ -4,21 +4,25 @@
 }
 
 <div class="row">
-    <div class="col-md-4">
-        <h3>Twitter sentiment analysis</h3>
+    <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+
+        @using (Ajax.BeginForm("Search", "Home", new AjaxOptions { UpdateTargetId = "searchResults", HttpMethod = "POST", InsertionMode = InsertionMode.Replace }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="input-group">
+
+                @Html.TextBoxFor(model => model.SearchText, new { @class = "form-control bg-light border-0 small", @placeholder = "Search for tweets..." })
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+        }
     </div>
-</div>
-<div class="row">
-    @using (Ajax.BeginForm("Search", "Home", new AjaxOptions { UpdateTargetId = "searchResults", HttpMethod = "POST", InsertionMode = InsertionMode.Replace }))
-    {
-        @Html.AntiForgeryToken()
-        <div class="col-md-8">
-            @Html.EditorFor(model => model.SearchText)
-        </div>
-        <div class="col-md-4">
-            <input type="submit" class="btn-primary" value="Search" />
-        </div>
-    }
+
     <div id="searchResults" class="col-md-12">
 
     </div>

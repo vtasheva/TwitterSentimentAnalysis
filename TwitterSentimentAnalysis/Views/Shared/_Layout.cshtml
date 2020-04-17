@@ -3,17 +3,23 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Twitter Sentiment Analysis</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                </ul>
+    <div class="preview-bar bg-white py-2 border-bottom-primary">
+        <div class="container-fluid h-100">
+            <div class="row align-items-center justify-content-between h-100">
+                <div class="col">
+                    @Html.ActionLink("Home", "Index", "Home", new { @class = "btn btn-primary btn-sm mr-2 d-none d-md-inline-block" })
+                </div>
+                <div class="col">
+                    <h3>Twitter Sentiment Analysis</h3>
+                </div>
+                <div class="col">
+                </div>
             </div>
         </div>
     </div>

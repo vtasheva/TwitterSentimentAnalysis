@@ -18,7 +18,7 @@ namespace TwitterSentimentAnalysis.Managers
 
         public IEnumerable<TweetModel> SearchTweets(string searchText)
         {
-            var tweets = _token.Search.Tweets(q => searchText);
+            var tweets = _token.Search.Tweets(searchText, lang: "en");
             var data = tweets.Select(x => 
                 new TweetModel
                 {

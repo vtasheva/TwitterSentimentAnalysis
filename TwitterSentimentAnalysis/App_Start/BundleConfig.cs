@@ -27,8 +27,10 @@ namespace TwitterSentimentAnalysis
                       "~/Scripts/jquery.validate.unobtrusive.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/all.min.css",
+                      "~/Content/sb-admin-2.css",
+                      "~/Content/dataTables.bootstrap4.min.css",
+                      "~/Content/Site.css"));
         }
     }
 }

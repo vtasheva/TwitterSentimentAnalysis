@@ -1,12 +1,33 @@
 ﻿@model IEnumerable<TwitterSentimentAnalysis.Models.ClassifiedTweetModel>
-@foreach (var tweet in Model)
-{
-    <ul>
-        <li>
-            @tweet.Text
-        </li>
-        <li>
-            @(tweet.Classifications.Any() ? tweet.Classifications.First().TagName : "Not classified")
-        </li>
-    </ul>
+
+@{
+    var tweetsCount = Model.Where(x => x.Classifications.Any() && x.Classifications.OrderByDescending(t => t.Confidence).First().TagName != "Not classified").GroupBy(x => x.Classifications.OrderByDescending(t => t.Confidence).First().TagName).Select(g => g.Count()).Max();
+
+    var positiveTweets = Model.Where(x => x.Classifications.Any() && x.Classifications.OrderByDescending(t => t.Confidence).First().TagName == "Positive").ToArray();
+    var negativeTweets = Model.Where(x => x.Classifications.Any() && x.Classifications.OrderByDescending(t => t.Confidence).First().TagName == "Negative").ToArray();
+    var neutralTweets = Model.Where(x => x.Classifications.Any() && x.Classifications.OrderByDescending(t => t.Confidence).First().TagName == "Neutral").ToArray();
 }
+<div class="row search-results">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Positive</th>
+                    <th>Negative</th>
+                    <th>Neutral</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < tweetsCount; i++)
+                {
+                    <tr>
+                        <td>@((positiveTweets.Count() > i && positiveTweets[i] != null) ? positiveTweets[i].Text : "")</td>
+                        <td>@((negativeTweets.Count() > i && negativeTweets[i] != null) ? negativeTweets[i].Text : "")</td>
+                        <td>@((neutralTweets.Count() > i && neutralTweets[i] != null) ? neutralTweets[i].Text : "")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
