@@ -2,3 +2,19 @@
 .search-results {
     margin-top: 20px;
 }
+
+.table-responsive .table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.table-responsive .table th,
+.table-responsive .table td {
+    width: 33%;
+}
+
+.search-form form > div,
+.tweet-count > * {
+    margin: 5px;
+    float: left;
+}

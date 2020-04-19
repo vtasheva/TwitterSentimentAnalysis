@@ -4,9 +4,9 @@
 }
 
 <div class="row">
-    <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <div class="search-form d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 
-        @using (Ajax.BeginForm("Search", "Home", new AjaxOptions { UpdateTargetId = "searchResults", HttpMethod = "POST", InsertionMode = InsertionMode.Replace }))
+        @using (Ajax.BeginForm("Search", "Home", new AjaxOptions { UpdateTargetId = "searchResults", HttpMethod = "POST", InsertionMode = InsertionMode.Replace }, new { @id = "searchForm" }))
         {
             @Html.AntiForgeryToken()
 
@@ -19,7 +19,13 @@
                     </button>
                 </div>
             </div>
-
+            <div class="tweet-count">
+                <label>Tweet count</label>
+                @Html.TextBoxFor(model => model.TweetCount, new { @class = "form-control bg-light border-0 small", type = "number", min = "1", max = "30", @Value = "5" })
+            </div>
+            <div>
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            </div>
         }
     </div>
 

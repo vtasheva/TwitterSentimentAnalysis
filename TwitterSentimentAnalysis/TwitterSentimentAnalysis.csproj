@@ -145,6 +145,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\dataTables.bootstrap4.min.css" />
     <Content Include="Content\style-theme.css" />
+    <Content Include="Scripts\Site.js" />
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-regular-400.svg" />
     <Content Include="webfonts\fa-solid-900.svg" />

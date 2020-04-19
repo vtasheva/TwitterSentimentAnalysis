@@ -35,7 +35,7 @@ namespace TwitterSentimentAnalysis.Controllers
             }
 
             var searchText = model.SearchText;
-            var data = _twitterManager.SearchTweets(searchText);
+            var data = _twitterManager.SearchTweets(searchText, model.TweetCount);
 
             var classifiedData = await _monkeyLearnManager.Classify(data);
 
