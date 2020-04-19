@@ -24,7 +24,8 @@ namespace TwitterSentimentAnalysis
 
             bundles.Add(new ScriptBundle("~/bundles/unobtrusive").Include(
                       "~/Scripts/jquery.unobtrusive-ajax.min.js",
-                      "~/Scripts/jquery.validate.unobtrusive.min.js"));
+                      "~/Scripts/jquery.validate.unobtrusive.min.js",
+                      "~/Scripts/canvasjs-2.3.2/jquery.canvasjs.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/site-scripts").Include(
                   "~/Scripts/Site.js"));

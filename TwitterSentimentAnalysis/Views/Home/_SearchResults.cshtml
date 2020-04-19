@@ -1,12 +1,9 @@
-﻿@model IEnumerable<TwitterSentimentAnalysis.Models.ClassifiedTweetModel>
+﻿@model TwitterSentimentAnalysis.Models.SearchResultsModel
 
-@{
-    var tweetsCount = Model.Where(x => x.Classifications.Any() && x.Classifications.OrderByDescending(t => t.Confidence).First().TagName != "Not classified").GroupBy(x => x.Classifications.OrderByDescending(t => t.Confidence).First().TagName).Select(g => g.Count()).Max();
+<div id="chartContainer">
 
-    var positiveTweets = Model.Where(x => x.Classifications.Any() && x.Classifications.OrderByDescending(t => t.Confidence).First().TagName == "Positive").ToArray();
-    var negativeTweets = Model.Where(x => x.Classifications.Any() && x.Classifications.OrderByDescending(t => t.Confidence).First().TagName == "Negative").ToArray();
-    var neutralTweets = Model.Where(x => x.Classifications.Any() && x.Classifications.OrderByDescending(t => t.Confidence).First().TagName == "Neutral").ToArray();
-}
+</div>
+
 <div class="row search-results">
     <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" cellspacing="0">
@@ -18,12 +15,12 @@
                 </tr>
             </thead>
             <tbody>
-                @for (int i = 0; i < tweetsCount; i++)
+                @for (int i = 0; i < Model.RowsCount; i++)
                 {
                     <tr>
-                        <td>@((positiveTweets.Count() > i && positiveTweets[i] != null) ? positiveTweets[i].Text : "")</td>
-                        <td>@((negativeTweets.Count() > i && negativeTweets[i] != null) ? negativeTweets[i].Text : "")</td>
-                        <td>@((neutralTweets.Count() > i && neutralTweets[i] != null) ? neutralTweets[i].Text : "")</td>
+                        <td>@((Model.PositiveTweets.Count() > i && Model.PositiveTweets[i] != null) ? Model.PositiveTweets[i].Text : "")</td>
+                        <td>@((Model.NegativeTweets.Count() > i && Model.NegativeTweets[i] != null) ? Model.NegativeTweets[i].Text : "")</td>
+                        <td>@((Model.NeutralTweets.Count() > i && Model.NeutralTweets[i] != null) ? Model.NeutralTweets[i].Text : "")</td>
                     </tr>
                 }
             </tbody>
@@ -31,3 +28,8 @@
     </div>
 </div>
 
+<script>
+    $(document).ready(function () {
+        renderChart(@Html.Raw(Model.ChartData));
+    });
+</script>
