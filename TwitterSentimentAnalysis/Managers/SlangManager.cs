@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using TwitterSentimentAnalysis.Models;
 
@@ -24,11 +25,13 @@ namespace TwitterSentimentAnalysis.Managers
                 var negativeConfidence = 0d;
 
                 var words = item.Text.Split().Where(x => !x.StartsWith("@"));
-                var chunckSizes = words.Count();
-                for (int chunkSize = 1; chunkSize <= chunckSizes; chunkSize++)
+                words = words.Select(x => Regex.Replace(x, @"[^\w]", ""));
+                words = words.Where(x => !string.IsNullOrWhiteSpace(x));
+                var wordsCount = words.Count();
+                for (int chunkSize = 1; chunkSize <= wordsCount; chunkSize++)
                 {
-                    var chunks = Enumerable.Range(0, chunckSizes / chunkSize)
-                            .Select(i => string.Join(" ", words.Skip(i * chunkSize).Take(chunkSize)));
+                    var chunks = Enumerable.Range(0, wordsCount - chunkSize + 1)
+                            .Select(i => string.Join(" ", words.Skip(i).Take(chunkSize)));
 
                     foreach (var chunk in chunks)
                     {

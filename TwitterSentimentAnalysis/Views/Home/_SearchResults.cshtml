@@ -6,8 +6,8 @@
             <thead>
                 <tr>
                     <th>Positive</th>
-                    <th>Negative</th>
                     <th>Neutral</th>
+                    <th>Negative</th>
                 </tr>
             </thead>
             <tbody>
@@ -15,8 +15,8 @@
                 {
                     <tr>
                         <td>@((Model.PositiveTweets.Count() > i && Model.PositiveTweets[i] != null) ? Model.PositiveTweets[i].Text : "")</td>
-                        <td>@((Model.NegativeTweets.Count() > i && Model.NegativeTweets[i] != null) ? Model.NegativeTweets[i].Text : "")</td>
                         <td>@((Model.NeutralTweets.Count() > i && Model.NeutralTweets[i] != null) ? Model.NeutralTweets[i].Text : "")</td>
+                        <td>@((Model.NegativeTweets.Count() > i && Model.NegativeTweets[i] != null) ? Model.NegativeTweets[i].Text : "")</td>
                     </tr>
                 }
             </tbody>
