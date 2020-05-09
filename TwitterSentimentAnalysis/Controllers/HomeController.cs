@@ -14,11 +14,13 @@ namespace TwitterSentimentAnalysis.Controllers
     {
         private readonly TwitterManager _twitterManager;
         private readonly MonkeyLearnManager _monkeyLearnManager;
+        private readonly SlangManager _slangManager;
 
         public HomeController()
         {
             _twitterManager = new TwitterManager();
             _monkeyLearnManager = new MonkeyLearnManager();
+            _slangManager = new SlangManager();
         }
 
         // GET: Training
@@ -39,6 +41,7 @@ namespace TwitterSentimentAnalysis.Controllers
             var data = _twitterManager.SearchTweets(searchText, model.TweetCount);
 
             var classifiedData = await _monkeyLearnManager.Classify(data);
+            classifiedData = _slangManager.ModifyConfidence(classifiedData);
 
             var searchResultsModel = new SearchResultsModel
             {
