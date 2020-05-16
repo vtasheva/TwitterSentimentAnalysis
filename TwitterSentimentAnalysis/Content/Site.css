@@ -18,3 +18,26 @@
     margin: 5px;
     float: left;
 }
+
+.container {
+    position: relative;
+    min-height: 87vh;
+}
+
+.content-wrap {
+    padding-bottom: 73px;
+}
+
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 73px;
+    width: 100%;
+    text-align: center;
+    background-color: white;
+}
+
+#chartContainer {
+    height: 380px;
+}
