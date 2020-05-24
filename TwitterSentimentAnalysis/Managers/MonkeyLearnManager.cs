@@ -13,8 +13,8 @@ namespace TwitterSentimentAnalysis.Managers
 {
     public class MonkeyLearnManager
     {
-        private readonly string AuthorizationToken = "dcee479c049314aed7adba9872cf3eff4563f9cf";
-        private readonly string ClassifierUri = "https://api.monkeylearn.com/v3/classifiers/cl_7mumPE5D/classify/";
+        private readonly string AuthorizationToken = "7e1dc21eca52c53ddc0156447b279822b7f9486b";
+        private readonly string ClassifierUri = "https://api.monkeylearn.com/v3/classifiers/cl_4qNvmLar/classify/";
 
         public async Task<IEnumerable<ClassifiedTweetModel>> Classify(IEnumerable<TweetModel> tweets)
         {
