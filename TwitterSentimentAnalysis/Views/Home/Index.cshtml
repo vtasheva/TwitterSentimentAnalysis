@@ -10,7 +10,8 @@
     {
         UpdateTargetId = "searchResults",
         HttpMethod = "POST",
-        InsertionMode = InsertionMode.Replace
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "loading"
     },
         new { @id = "searchForm" }))
     {
@@ -36,5 +37,8 @@
 </div>
 
 <div id="searchResults" class="col-md-12">
+
+</div>
+<div id="loading" class="layout-transparent">
 
 </div>

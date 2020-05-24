@@ -14,9 +14,46 @@
                 @for (int i = 0; i < Model.RowsCount; i++)
                 {
                     <tr>
-                        <td>@((Model.PositiveTweets.Count() > i && Model.PositiveTweets[i] != null) ? Model.PositiveTweets[i].Text : "")</td>
-                        <td>@((Model.NeutralTweets.Count() > i && Model.NeutralTweets[i] != null) ? Model.NeutralTweets[i].Text : "")</td>
-                        <td>@((Model.NegativeTweets.Count() > i && Model.NegativeTweets[i] != null) ? Model.NegativeTweets[i].Text : "")</td>
+                        <td>
+                            <div>@((Model.PositiveTweets.Count() > i && Model.PositiveTweets[i] != null) ? Model.PositiveTweets[i].Text : "")</div>
+                            <div class="confidence">
+                                @if (Model.PositiveTweets.Count() > i && Model.PositiveTweets[i] != null)
+                                {
+                                    foreach (var classification in Model.PositiveTweets[i].Classifications.OrderByDescending(x => x.TagName))
+                                    {
+                                        <span>@classification.TagName (@classification.Confidence)</span>
+                                    }
+                                }
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @((Model.NeutralTweets.Count() > i && Model.NeutralTweets[i] != null) ? Model.NeutralTweets[i].Text : "")
+                            </div>
+                            <div class="confidence">
+                                @if (Model.NeutralTweets.Count() > i && Model.NeutralTweets[i] != null)
+                                {
+                                    foreach (var classification in Model.NeutralTweets[i].Classifications.OrderByDescending(x => x.TagName))
+                                    {
+                                        <span>@classification.TagName (@classification.Confidence)</span>
+                                    }
+                                }
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @((Model.NegativeTweets.Count() > i && Model.NegativeTweets[i] != null) ? Model.NegativeTweets[i].Text : "")
+                            </div>
+                            <div class="confidence">
+                                @if (Model.NegativeTweets.Count() > i && Model.NegativeTweets[i] != null)
+                                {
+                                    foreach (var classification in Model.NegativeTweets[i].Classifications.OrderByDescending(x => x.TagName))
+                                    {
+                                        <span>@classification.TagName (@classification.Confidence)</span>
+                                    }
+                                }
+                            </div>
+                        </td>
                     </tr>
                 }
             </tbody>
